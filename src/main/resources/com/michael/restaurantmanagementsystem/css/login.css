@@ -1,0 +1,12 @@
+.bg-primary {
+-fx-background-color: #3086c4;
+}
+
+.btn-primary {
+-fx-background-color: #3086c4;
+-fx-text-fill: #fff;
+}
+
+.primary {
+-fx-text-fill: #3086c4;
+}
