@@ -2,6 +2,7 @@ package com.michael.restaurantmanagementsystem;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -12,11 +13,13 @@ import java.io.IOException;
 public class Main extends Application {
     //Overview: Entry point of JavaFx application
     private static Scene scene;
+    private static Stage primaryStage;
 
     @Override
     public void start(Stage stage) throws IOException {
         // MODIFIES: stage
         // EFFECTS: starts the javaFx application instance
+        primaryStage = stage;
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/main.fxml"));
         scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("Tasty Food Restaurant");
@@ -41,6 +44,14 @@ public class Main extends Application {
     public static void setRoot(String fxml) throws IOException {
         // EFFECTS: sets the root node of the scene
         scene.setRoot(loadFXML(fxml));
+    }
+
+    public static void setRoot(String fxml, Rectangle2D bounds) throws IOException {
+        // EFFECTS: sets the root node of the scene
+        //Stage stage = (Stage) (scene.getWindow());
+        scene = new Scene(loadFXML(fxml), bounds.getWidth(), bounds.getHeight());
+        primaryStage.setScene(scene);
+        primaryStage.centerOnScreen();
     }
 
     private static Parent loadFXML(String fxml) throws IOException {

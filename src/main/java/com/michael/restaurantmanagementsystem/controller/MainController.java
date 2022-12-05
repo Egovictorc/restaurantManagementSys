@@ -40,7 +40,7 @@ public class MainController {
                                 Stage stage = (Stage) scene.getWindow();
                                 try {
                                     // change view to home view
-                                    FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/com/michael/restaurantmanagementsystem/fxml/login.fxml"));
+                                    FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/com/michael/restaurantmanagementsystem/fxml/signup.fxml"));
                                     scene.setRoot(fxmlLoader.load());
                                     // use screen width and height
                                     //stage.setX(0.0);

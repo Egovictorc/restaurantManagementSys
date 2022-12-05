@@ -1,18 +1,19 @@
 package com.michael.restaurantmanagementsystem.controller;
 
+import com.michael.restaurantmanagementsystem.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 
 public class HomeController implements Initializable {
 
@@ -20,6 +21,11 @@ public class HomeController implements Initializable {
     private AnchorPane root;
     @FXML
     private VBox pnItems = null;
+
+    @FXML
+    private FlowPane menuItemsPane = null;
+    @FXML
+    private TilePane patronsPane = null;
     @FXML
     private Button btnOverview;
 
@@ -67,36 +73,53 @@ public class HomeController implements Initializable {
                 //give the items some effect
 
                 nodes[i].setOnMouseEntered(event -> {
-                    nodes[j].setStyle("-fx-background-color : #0A0E3F");
+                    nodes[j].setStyle("-fx-background-color : #CECECE");
                 });
                 nodes[i].setOnMouseExited(event -> {
-                    nodes[j].setStyle("-fx-background-color : #02030A");
+                    nodes[j].setStyle("-fx-background-color : #FFF");
                 });
                 pnItems.getChildren().add(nodes[i]);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-      
+
     }
 
 
-    public void handleClicks(ActionEvent actionEvent) {
+    public void handleClicks(ActionEvent actionEvent) throws IOException {
         if (actionEvent.getSource() == btnCustomers) {
-            pnlCustomer.setStyle("-fx-background-color : #1620A1");
+            //pnlCustomer.setStyle("-fx-background-color : #1620A1");
+            Node[] nodes = new Node[10];
+            for (int i = 0; i < nodes.length; i++) {
+                nodes[i] = FXMLLoader.load(getClass().getResource("/com/michael/restaurantmanagementsystem/fxml/menu.fxml"));
+            }
+            patronsPane.getChildren().addAll(nodes);
             pnlCustomer.toFront();
         }
         if (actionEvent.getSource() == btnMenus) {
-            pnlMenus.setStyle("-fx-background-color : #53639F");
+            //pnlMenus.setStyle("-fx-background-color : #53639F");
+            Node[] nodes = new Node[10];
+            for (int i = 0; i < nodes.length; i++) {
+                nodes[i] = FXMLLoader.load(getClass().getResource("/com/michael/restaurantmanagementsystem/fxml/menu.fxml"));
+            }
+            menuItemsPane.getChildren().addAll(nodes);
+            menuItemsPane.setPrefWrapLength(pnlMenus.getMaxWidth());
             pnlMenus.toFront();
         }
         if (actionEvent.getSource() == btnOverview) {
-            pnlOverview.setStyle("-fx-background-color : #02030A");
+            //pnlOverview.setStyle("-fx-background-color : #02030A");
+            pnlOverview.setStyle("-fx-background-color : #FFF");
             pnlOverview.toFront();
         }
         if (actionEvent.getSource() == btnOrders) {
             pnlOrders.setStyle("-fx-background-color : #464F67");
             pnlOrders.toFront();
+        }
+        if (actionEvent.getSource() == btnSignout) {
+            System.out.println("clicked on signout button");
+            //Main.setRoot("login");
+            Main.setRoot("login", new Rectangle2D(0, 0, 800.0, 600.0));
         }
     }
 }

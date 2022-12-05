@@ -8,6 +8,9 @@ module com.michael.restaurantmanagementsystem {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires MaterialFX;
+    
+    requires org.apache.logging.log4j;
+    requires org.apache.logging.log4j.core;
 
     opens com.michael.restaurantmanagementsystem to javafx.fxml;
     exports com.michael.restaurantmanagementsystem;
