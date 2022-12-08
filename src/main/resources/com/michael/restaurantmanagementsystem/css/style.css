@@ -67,3 +67,15 @@
 .scroll-pane > .corner {
   -fx-background-color: rgb(252, 248, 248);
 }
+
+.rounded {
+-fx-border-color: #2A73FF;
+-fx-border-radius: 20;
+-fx-background-color: transparent;
+-fx-padding: 5px;
+}
+
+.title {
+    -fx-font-size: 14px;
+    -fx-text-fill: #5120b0;
+}

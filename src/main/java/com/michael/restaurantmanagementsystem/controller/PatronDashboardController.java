@@ -1,6 +1,7 @@
 package com.michael.restaurantmanagementsystem.controller;
 
 import com.michael.restaurantmanagementsystem.Main;
+import com.michael.restaurantmanagementsystem.entity.Patron;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,10 +13,10 @@ import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
-
-public class HomeController implements Initializable {
+public class PatronDashboardController implements Initializable {
 
     @FXML
     private AnchorPane root;
@@ -91,6 +92,7 @@ public class HomeController implements Initializable {
             //pnlCustomer.setStyle("-fx-background-color : #1620A1");
             Node[] nodes = new Node[10];
             for (int i = 0; i < nodes.length; i++) {
+
                 nodes[i] = FXMLLoader.load(getClass().getResource("/com/michael/restaurantmanagementsystem/fxml/patron.fxml"));
                 //nodes[i].getC
             }
@@ -121,6 +123,14 @@ public class HomeController implements Initializable {
             //Main.setRoot("login");
             Main.setRoot("login", new Rectangle2D(0, 0, 800.0, 600.0));
         }
+    }
+
+    public Node[] getAllPatrons() {
+        List<Patron> patronList = List.of(
+
+        );
+
+        return
     }
 }
 

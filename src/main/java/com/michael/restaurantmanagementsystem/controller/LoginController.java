@@ -4,11 +4,13 @@ import com.michael.restaurantmanagementsystem.Main;
 import com.michael.restaurantmanagementsystem.service.Utils;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
+import io.github.palexdev.materialfx.controls.MFXRadioButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Screen;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -24,6 +26,12 @@ public class LoginController {
     public MFXButton btnLogin, btnSignup;
 
     @FXML
+    public ToggleGroup userCategory;
+
+    @FXML
+    public MFXRadioButton staff, patron;
+
+    @FXML
     public MFXTextField txtEmail;
     @FXML
     public MFXPasswordField txtPassword;
@@ -37,7 +45,8 @@ public class LoginController {
                 logger.log(Level.INFO, "User {} logged in successfully", email);
                 //Rectangle2D bounds = Screen.getPrimary().getBounds();
                 Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-                Main.setRoot("home", bounds);
+
+                Main.setRoot(userCategory.getSelectedToggle() == patron ? "dashboard/dashboard-patron" : "dashboard/dashboard-staff", bounds);
 
             } else {
                 Utils.showAlert("Error", "Invalid email and / or password", Alert.AlertType.ERROR);

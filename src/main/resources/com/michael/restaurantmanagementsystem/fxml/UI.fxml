@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <AnchorPane id="AnchorPane" prefHeight="580.0" prefWidth="919.0" stylesheets="@../css/ui.css"
+            xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.michael.restaurantmanagementsystem.controller.UIController">
     <children>
         <AnchorPane layoutX="-1.0" layoutY="74.0" prefHeight="506.0" prefWidth="240.0" styleClass="sidebar">

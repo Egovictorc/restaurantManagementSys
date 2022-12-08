@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import io.github.palexdev.materialfx.controls.MFXRadioButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
@@ -31,7 +30,7 @@
                         <Image url="@../illustrations/icons8_cook_96px.png" />
                      </image>
                   </ImageView>
-                        <Label text="Tasty Food" textFill="WHITE">
+                        <Label text="Good Tasty" textFill="WHITE">
                             <font>
                                 <Font name="Bodoni MT" size="20.0" />
                             </font>
@@ -86,16 +85,6 @@
                                         <Font size="15.0" />
                                     </font>
                                 </MFXTextField>
-                                <MFXCheckbox fx:id="forgotPwd" onAction="#handleClick" text="Forgot Password" GridPane.columnIndex="1" GridPane.rowIndex="9">
-                                    <font>
-                                        <Font name="Bell MT" size="16.0" />
-                                    </font>
-                                </MFXCheckbox>
-                                <MFXCheckbox fx:id="rememberMe" onAction="#handleClick" text="Remember me" GridPane.rowIndex="9">
-                                    <font>
-                                        <Font name="Bell MT" size="16.0" />
-                                    </font>
-                                </MFXCheckbox>
                                 <MFXButton fx:id="btnSignup" alignment="CENTER" buttonType="RAISED" defaultButton="true" maxWidth="1.7976931348623157E308" onAction="#handleClick" prefHeight="65.0" prefWidth="394.0" rippleColor="#2936c9" style="-fx-background-color: #3086c4;" text="Signup now" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.rowIndex="10">
                                     <font>
                                         <Font name="Bell MT Bold" size="16.0" />
@@ -144,7 +133,7 @@
                                     <ToggleGroup fx:id="category" />
                                  </toggleGroup>
                               </MFXRadioButton>
-                              <MFXRadioButton text="Patron" toggleGroup="$category">
+                              <MFXRadioButton selected="true" text="Patron" toggleGroup="$category">
                                  <font>
                                     <Font name="Bell MT" size="16.0" />
                                  </font>

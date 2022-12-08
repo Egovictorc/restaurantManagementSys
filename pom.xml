@@ -122,7 +122,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.michael.restaurantmanagementsystem/com.michael.restaurantmanagementsystem.HelloApplication
+                                com.michael.restaurantmanagementsystem/com.michael.restaurantmanagementsystem.Main
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

@@ -112,15 +112,15 @@
                                 </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="40.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
                            <children>
-                              <MFXRadioButton text="Staff">
+                              <MFXRadioButton fx:id="staff" text="Staff">
                                  <font>
                                     <Font name="Bell MT" size="16.0" />
                                  </font>
                                  <toggleGroup>
-                                    <ToggleGroup fx:id="category" />
+                                    <ToggleGroup fx:id="userCategory" />
                                  </toggleGroup>
                               </MFXRadioButton>
-                              <MFXRadioButton text="Patron" toggleGroup="$category">
+                              <MFXRadioButton fx:id="patron" selected="true" text="Patron" toggleGroup="$userCategory">
                                  <font>
                                     <Font name="Bell MT" size="16.0" />
                                  </font>

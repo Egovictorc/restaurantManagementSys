@@ -14,8 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
-public class HomeController implements Initializable {
+public class StaffDashboardController implements Initializable {
 
     @FXML
     private AnchorPane root;

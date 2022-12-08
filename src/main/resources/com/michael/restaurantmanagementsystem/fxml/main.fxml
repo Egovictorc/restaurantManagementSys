@@ -5,23 +5,22 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="30.0" stylesheets="@../css/style.css"
-      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.michael.restaurantmanagementsystem.controller.MainController">
+
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="30.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.michael.restaurantmanagementsystem.controller.MainController">
     <children>
         <Label fx:id="title" text="Welcome to">
             <font>
-                <Font name="Brush Script MT Italic" size="30.0"/>
+                <Font name="Brush Script MT Italic" size="30.0" />
             </font>
         </Label>
-        <Label text="Good Tasty Food Restaurant" textFill="#1a4664">
+        <Label text="Good Tasty Restaurant" textFill="#1a4664">
             <font>
-                <Font name="Baskerville Old Face" size="36.0"/>
+                <Font name="Baskerville Old Face" size="36.0" />
             </font>
         </Label>
         <ImageView fitHeight="150.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../images/ajax-loader.gif"/>
+                <Image url="@../images/ajax-loader.gif" />
             </image>
         </ImageView>
     </children>
