@@ -27,7 +27,7 @@ public class PatronDashboardController implements Initializable {
     @FXML
     private FlowPane menuItemsPane = null;
     @FXML
-    private Button btnOverview;
+    private Button btnProfile;
 
     @FXML
     private Button btnOrders;
@@ -48,10 +48,7 @@ public class PatronDashboardController implements Initializable {
     private Pane pnlCustomer;
 
     @FXML
-    private Pane pnlOrders;
-
-    @FXML
-    private Pane pnlOverview;
+    private Pane pnlOrders, pnlProfile;
 
     @FXML
     private Pane pnlMenus;
@@ -95,13 +92,13 @@ public class PatronDashboardController implements Initializable {
             menuItemsPane.setPrefWrapLength(pnlMenus.getMaxWidth());
             pnlMenus.toFront();
         }
-        if (actionEvent.getSource() == btnOverview) {
+        if (actionEvent.getSource() == btnProfile) {
             //pnlOverview.setStyle("-fx-background-color : #02030A");
-            pnlOverview.setStyle("-fx-background-color : #FFF");
-            pnlOverview.toFront();
+            //pnlProfile.setStyle("-fx-background-color : #FFF");
+            pnlProfile.toFront();
         }
         if (actionEvent.getSource() == btnOrders) {
-            pnlOrders.setStyle("-fx-background-color : #464F67");
+            //pnlOrders.setStyle("-fx-background-color : #464F67");
             pnlOrders.toFront();
         }
         if (actionEvent.getSource() == btnSignout) {

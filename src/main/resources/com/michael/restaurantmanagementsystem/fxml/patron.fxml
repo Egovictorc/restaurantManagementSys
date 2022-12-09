@@ -9,7 +9,7 @@
 
 <AnchorPane maxWidth="-Infinity" prefHeight="251.0" prefWidth="219.0" style="-fx-background-color: #fff;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.michael.restaurantmanagementsystem.controller.PatronController">
     <children>
-        <MFXButton fx:id="patronBtn" contentDisplay="TOP" layoutX="1.0" layoutY="43.0" prefHeight="179.0" prefWidth="219.0" style="-fx-border-radius: 25px;" text="Patron Full name" textFill="#551ac9" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="43.0">
+        <MFXButton fx:id="patronBtn" contentDisplay="TOP" layoutX="1.0" layoutY="43.0" onAction="#handleClick" prefHeight="179.0" prefWidth="219.0" style="-fx-border-radius: 25px;" text="Patron Full name" textFill="#551ac9" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="43.0">
             <graphic>
                 <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                     <image>

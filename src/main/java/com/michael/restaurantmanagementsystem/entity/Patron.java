@@ -57,6 +57,7 @@ public class Patron extends User {
         mfxButton.setText("");
         mfxButton.setGraphic(img);
         mfxButton.setCursor(Cursor.HAND);
+        mfxButton.setOnMouseClicked();
         //mfxButton.setContentDisplay(ContentDisplay.TOP);
 
         root.setSpacing(20);
