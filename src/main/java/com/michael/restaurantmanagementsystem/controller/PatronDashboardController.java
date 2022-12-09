@@ -1,7 +1,6 @@
 package com.michael.restaurantmanagementsystem.controller;
 
 import com.michael.restaurantmanagementsystem.Main;
-import com.michael.restaurantmanagementsystem.entity.Patron;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,11 +8,13 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class PatronDashboardController implements Initializable {
@@ -26,15 +27,10 @@ public class PatronDashboardController implements Initializable {
     @FXML
     private FlowPane menuItemsPane = null;
     @FXML
-    private TilePane patronsPane = null;
-    @FXML
     private Button btnOverview;
 
     @FXML
     private Button btnOrders;
-
-    @FXML
-    private Button btnCustomers;
 
     @FXML
     private Button btnMenus;
@@ -88,17 +84,7 @@ public class PatronDashboardController implements Initializable {
     }
 
     public void handleClicks(ActionEvent actionEvent) throws IOException {
-        if (actionEvent.getSource() == btnCustomers) {
-            //pnlCustomer.setStyle("-fx-background-color : #1620A1");
-            Node[] nodes = new Node[10];
-            for (int i = 0; i < nodes.length; i++) {
 
-                nodes[i] = FXMLLoader.load(getClass().getResource("/com/michael/restaurantmanagementsystem/fxml/patron.fxml"));
-                //nodes[i].getC
-            }
-            patronsPane.getChildren().addAll(nodes);
-            pnlCustomer.toFront();
-        }
         if (actionEvent.getSource() == btnMenus) {
             //pnlMenus.setStyle("-fx-background-color : #53639F");
             Node[] nodes = new Node[10];
@@ -125,12 +111,6 @@ public class PatronDashboardController implements Initializable {
         }
     }
 
-    public Node[] getAllPatrons() {
-        List<Patron> patronList = List.of(
 
-        );
-
-        return
-    }
 }
 
