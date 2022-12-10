@@ -1,7 +1,6 @@
 package com.michael.restaurantmanagementsystem.entity;
 
 import com.opencsv.bean.CsvBindByName;
-import javafx.scene.Node;
 
 public abstract class User {
 
@@ -72,5 +71,5 @@ public abstract class User {
         this.imageUrl = imageUrl;
     }
 
-    public abstract Node createView();
+    //public abstract Node createView();
 }

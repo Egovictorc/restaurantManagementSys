@@ -1,16 +1,7 @@
 package com.michael.restaurantmanagementsystem.entity;
 
-import com.michael.restaurantmanagementsystem.Main;
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvToBeanBuilder;
-import io.github.palexdev.materialfx.controls.MFXButton;
-import javafx.geometry.Pos;
-import javafx.scene.Cursor;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -37,6 +28,7 @@ public class Patron extends User {
         this.level = level;
     }
 
+/*
     @Override
     public Node createView() {
         VBox root = new VBox();
@@ -57,7 +49,9 @@ public class Patron extends User {
         mfxButton.setText("");
         mfxButton.setGraphic(img);
         mfxButton.setCursor(Cursor.HAND);
-        mfxButton.setOnMouseClicked();
+        mfxButton.setOnMouseClicked(event -> {
+
+        });
         //mfxButton.setContentDisplay(ContentDisplay.TOP);
 
         root.setSpacing(20);
@@ -68,6 +62,7 @@ public class Patron extends User {
         root.getChildren().addAll(mfxButton, username, email);
         return root;
     }
+*/
 
     public String getGender() {
         return gender;

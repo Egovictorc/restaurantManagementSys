@@ -26,7 +26,7 @@ public class PatronController {
 
 
     public void handleClick(ActionEvent actionEvent) throws IOException {
-        Scene scene = new Scene(new FXMLLoader(PatronController.class.getResource("fxml/modal/modal-patron.fxml")).load());
+        Scene scene = new Scene(new FXMLLoader(PatronController.class.getResource("fxml/modal/update-patron.fxml")).load());
         Stage dialog = new Stage();
         // populate dialog with controls.
         Stage parentStage = (Stage) ((Node) (actionEvent.getSource())).getScene().getWindow();

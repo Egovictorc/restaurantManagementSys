@@ -1,7 +1,11 @@
 package com.michael.restaurantmanagementsystem.controller;
 
 import com.michael.restaurantmanagementsystem.Main;
+import com.michael.restaurantmanagementsystem.entity.Menu;
+import com.michael.restaurantmanagementsystem.entity.ModalType;
 import com.michael.restaurantmanagementsystem.entity.Patron;
+import com.michael.restaurantmanagementsystem.service.MenuService;
+import com.michael.restaurantmanagementsystem.service.PatronService;
 import com.opencsv.bean.CsvToBeanBuilder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +25,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class StaffDashboardController implements Initializable {
+    PatronService patronService = new PatronService();
+    MenuService menuService = new MenuService();
 
     @FXML
     private AnchorPane root;
@@ -66,7 +72,9 @@ public class StaffDashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //set app to use device size
+
+        //set overview panel to front
+        pnlOverview.toFront();
 
         Node[] nodes = new Node[10];
         for (int i = 0; i < nodes.length; i++) {
@@ -93,10 +101,18 @@ public class StaffDashboardController implements Initializable {
 
     public void handleClicks(ActionEvent actionEvent) throws IOException {
 
-        if (actionEvent.getSource() == btnCustomers) {
+        Button source = (Button) actionEvent.getSource();
+        List<Button> btnList = List.of(btnCustomers, btnMenus, btnOrders, btnOverview, btnPackages, btnSettings);
+        //remove active style class from other buttons
+        btnList.forEach(btn -> btn.getStyleClass().remove("active-button"));
+        //add active style class to action source
+        source.getStyleClass().add("active-button");
+
+        if (source == btnCustomers) {
             //pnlCustomer.setStyle("-fx-background-color : #1620A1");
             List<Patron> patronList = getAllPatrons();
-            List<Node> nodes = patronList.stream().map(Patron::createView).toList();
+            List<Node> nodes = patronList.stream().map(patronService::createView).toList();
+            //List<Node> nodes = patronList.stream().map(Patron::createView).toList();
 
             patronsPane.getChildren().addAll(nodes);
             pnlCustomer.toFront();
@@ -111,17 +127,23 @@ public class StaffDashboardController implements Initializable {
             patronsPane.getChildren().addAll(nodes);
             pnlCustomer.toFront();
         }*/
-        if (actionEvent.getSource() == btnMenus) {
+        if (source == btnMenus) {
             //pnlMenus.setStyle("-fx-background-color : #53639F");
-            Node[] nodes = new Node[10];
+            /*Node[] nodes = new Node[10];
             for (int i = 0; i < nodes.length; i++) {
                 nodes[i] = FXMLLoader.load(getClass().getResource("/com/michael/restaurantmanagementsystem/fxml/menu.fxml"));
-            }
+            }*/
+
+            List<Menu> menuList = getAllMenu();
+            List<Node> nodes = menuList.stream().map(menuService::createView).toList();
+            //List<Node> nodes = patronList.stream().map(Patron::createView).toList();
+
+            menuItemsPane.getChildren().removeAll();
             menuItemsPane.getChildren().addAll(nodes);
             menuItemsPane.setPrefWrapLength(pnlMenus.getMaxWidth());
             pnlMenus.toFront();
         }
-        if (actionEvent.getSource() == btnOverview) {
+        if (source == btnOverview) {
             //pnlOverview.setStyle("-fx-background-color : #02030A");
             pnlOverview.setStyle("-fx-background-color : #FFF");
             pnlOverview.toFront();
@@ -146,8 +168,28 @@ public class StaffDashboardController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         return patronList;
+    }
+
+    public List<Menu> getAllMenu() {
+        InputStream inputStream = Menu.class.getResourceAsStream("/MENU_DATA.csv");
+        List<Menu> menuList;
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
+            menuList = new CsvToBeanBuilder<Menu>(bufferedReader)
+                    .withType(Menu.class).build().parse();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return menuList;
+    }
+
+    public void handleAddPatron(ActionEvent actionEvent) {
+        patronService.handleClick(actionEvent, ModalType.NEW);
+    }
+
+    public void handleAddMenu(ActionEvent actionEvent) {
+
+        menuService.handleClick(actionEvent, ModalType.NEW);
     }
 }
 

@@ -21,4 +21,10 @@ module com.michael.restaurantmanagementsystem {
 
     opens com.michael.restaurantmanagementsystem.controller to javafx.fxml;
     exports com.michael.restaurantmanagementsystem.controller;
+
+    opens com.michael.restaurantmanagementsystem.controller.modal to javafx.fxml;
+    exports com.michael.restaurantmanagementsystem.controller.modal;
+
+    opens com.michael.restaurantmanagementsystem.service to javafx.fxml;
+    exports com.michael.restaurantmanagementsystem.service;
 }
