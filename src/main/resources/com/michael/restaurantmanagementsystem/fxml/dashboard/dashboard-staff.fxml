@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPaginatedTableView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -140,7 +141,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                 </Button>
-                <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../css/style.css" text="Settings">
+                <Button fx:id="btnStaffManagement" alignment="BASELINE_LEFT" graphicTextGap="22.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../css/style.css" text="Staff Management">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -158,6 +159,24 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                 </Button>
+            <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../css/style.css" text="Settings">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/icons8_Slider__32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
                 <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../css/style.css" text="Sign Out">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
@@ -560,6 +579,16 @@
                         </ScrollPane>
                     </children>
                 </Pane>
+            <Pane fx:id="pnlStaffManagement" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
+               <children>
+                  <Label layoutX="62.0" layoutY="58.0" text="Manage Staff">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <MFXPaginatedTableView fx:id="paginated" layoutX="25.0" layoutY="132.0" prefHeight="633.0" prefWidth="787.0" />
+               </children>
+            </Pane>
             </children>
         </StackPane>
     </items>

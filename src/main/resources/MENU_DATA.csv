@@ -2,3 +2,6 @@ id,title,description,available,createdAt,imageUrl
 1,Grapes - Red,Phasellus sit amet erat. Nulla tempus.,true,9/28/2022,images/menu/icons8_barbeque_96px.png
 2,Pants Custom Dry Clean,Vestibulum ante ipsum primis in faucibus orci luctus,true,9/28/2022,images/menu/icons8_hot_dog_96px.png
 3,Honey - Lavender,Duis consequat dui nec nisi volutpat eleifend.,false,5/24/2022,images/menu/icons8_mcdonald`s_french_fries_96px.png
+4,Oxtail - Cut,"Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.",false,9/26/2022,images/menu/icons8_salami_pizza_96px.png
+5,Yogurt - Assorted Pack,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",true,2/6/2022,images/menu/icons8_sandwich_96px.png
+6,Barley - Pearl,Integer a nibh. In quis justo.,false,6/24/2022,images/menu/icons8_sandwich_96px.png

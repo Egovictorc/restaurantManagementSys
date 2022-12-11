@@ -4,13 +4,23 @@ import com.michael.restaurantmanagementsystem.Main;
 import com.michael.restaurantmanagementsystem.entity.Menu;
 import com.michael.restaurantmanagementsystem.entity.ModalType;
 import com.michael.restaurantmanagementsystem.entity.Patron;
+import com.michael.restaurantmanagementsystem.entity.Staff;
 import com.michael.restaurantmanagementsystem.service.MenuService;
 import com.michael.restaurantmanagementsystem.service.PatronService;
 import com.opencsv.bean.CsvToBeanBuilder;
+import io.github.palexdev.materialfx.controls.MFXPaginatedTableView;
+import io.github.palexdev.materialfx.controls.MFXTableColumn;
+import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
+import io.github.palexdev.materialfx.filter.IntegerFilter;
+import io.github.palexdev.materialfx.filter.StringFilter;
+import io.github.palexdev.materialfx.utils.others.observables.When;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -21,6 +31,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -53,7 +64,7 @@ public class StaffDashboardController implements Initializable {
     private Button btnPackages;
 
     @FXML
-    private Button btnSettings;
+    private Button btnSettings, btnStaffManagement;
 
     @FXML
     private Button btnSignout;
@@ -65,10 +76,13 @@ public class StaffDashboardController implements Initializable {
     private Pane pnlOrders;
 
     @FXML
-    private Pane pnlOverview;
+    private Pane pnlOverview, pnlStaffManagement;
 
     @FXML
     private Pane pnlMenus;
+    @FXML
+    private MFXPaginatedTableView<Staff> paginated;
+    ObservableList<Staff> staff;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -97,12 +111,18 @@ public class StaffDashboardController implements Initializable {
             }
         }
 
+        setupPaginated();
+        paginated.autosizeColumnsOnInitialization();
+        When.onChanged(paginated.currentPageProperty())
+                .then((oldValue, newValue) -> paginated.autosizeColumns())
+                .listen();
+
     }
 
     public void handleClicks(ActionEvent actionEvent) throws IOException {
 
         Button source = (Button) actionEvent.getSource();
-        List<Button> btnList = List.of(btnCustomers, btnMenus, btnOrders, btnOverview, btnPackages, btnSettings);
+        List<Button> btnList = List.of(btnCustomers, btnMenus, btnOrders, btnOverview, btnPackages, btnSettings, btnStaffManagement);
         //remove active style class from other buttons
         btnList.forEach(btn -> btn.getStyleClass().remove("active-button"));
         //add active style class to action source
@@ -152,6 +172,10 @@ public class StaffDashboardController implements Initializable {
             pnlOrders.setStyle("-fx-background-color : #464F67");
             pnlOrders.toFront();
         }
+        if (actionEvent.getSource() == btnStaffManagement) {
+            //pnlStaffManagement.setStyle("-fx-background-color : #464F67");
+            pnlStaffManagement.toFront();
+        }
         if (actionEvent.getSource() == btnSignout) {
             System.out.println("clicked on signout button");
             //Main.setRoot("login");
@@ -188,8 +212,41 @@ public class StaffDashboardController implements Initializable {
     }
 
     public void handleAddMenu(ActionEvent actionEvent) {
-
         menuService.handleClick(actionEvent, ModalType.NEW);
+    }
+
+
+    private void setupPaginated() {
+        MFXTableColumn<Staff> idColumn = new MFXTableColumn<>("ID", false, Comparator.comparing(Staff::getId));
+        MFXTableColumn<Staff> firstNameColumn = new MFXTableColumn<>("First Name", false, Comparator.comparing(Staff::getFirstName));
+        MFXTableColumn<Staff> lastNameColumn = new MFXTableColumn<>("Last Name", false, Comparator.comparing(Staff::getLastName));
+        MFXTableColumn<Staff> deptColumn = new MFXTableColumn<>("Department", false, Comparator.comparing(Staff::getDept));
+        MFXTableColumn<Staff> emailColumn = new MFXTableColumn<>("Email", false, Comparator.comparing(Staff::getEmail));
+        MFXTableColumn<Staff> salaryColumn = new MFXTableColumn<>("Salary", false, Comparator.comparing(Staff::getSalary));
+
+        idColumn.setRowCellFactory(staff -> new MFXTableRowCell<>(Staff::getId));
+        firstNameColumn.setRowCellFactory(staff -> new MFXTableRowCell<>(Staff::getFirstName));
+        lastNameColumn.setRowCellFactory(staff -> new MFXTableRowCell<>(Staff::getLastName) {{
+            setAlignment(Pos.CENTER_RIGHT);
+        }});
+        emailColumn.setRowCellFactory(staff -> new MFXTableRowCell<>(Staff::getEmail));
+        deptColumn.setRowCellFactory(staff -> new MFXTableRowCell<>(Staff::getDept));
+        firstNameColumn.setAlignment(Pos.CENTER_RIGHT);
+
+        paginated.getTableColumns().addAll(idColumn, firstNameColumn, lastNameColumn, emailColumn, deptColumn);
+        paginated.getFilters().addAll(
+                new IntegerFilter<>("ID", Staff::getId),
+                new StringFilter<>("First Name", Staff::getFirstName),
+                new StringFilter<>("Last Name", Staff::getLastName),
+                // new EnumFilter<Staff, Staff.Department>("Dept", Staff::getDept),
+                new StringFilter<>("Email", Staff::getEmail)
+                //new StringFilter<>("State", Staff::getState, Staff.Level.class),
+        );
+
+        staff = FXCollections.observableArrayList(
+                new Staff(1, "uche", "okeke", "ucheokeke@gmail.com", "Female", "ImageUrl")
+        );
+        paginated.setItems(staff);
     }
 }
 

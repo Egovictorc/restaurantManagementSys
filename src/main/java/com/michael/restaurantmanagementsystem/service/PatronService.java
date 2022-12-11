@@ -44,6 +44,8 @@ public class PatronService implements RestaurantService<Patron> {
         mfxButton.setOnAction(event -> handleClick(event, ModalType.UPDATE));
 
         root.setSpacing(20);
+        root.setPrefWidth(250);
+        root.setMaxWidth(root.getPrefWidth());
         root.setStyle("-fx-background-color: #fff; -fx-padding: 20px;");
         root.getStylesheets().add(String.valueOf(Main.class.getResource("css/style.css")));
         root.setAlignment(Pos.CENTER);
