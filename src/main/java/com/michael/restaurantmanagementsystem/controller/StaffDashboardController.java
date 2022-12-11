@@ -1,6 +1,8 @@
 package com.michael.restaurantmanagementsystem.controller;
 
 import com.michael.restaurantmanagementsystem.Main;
+import com.michael.restaurantmanagementsystem.db.DBPatron;
+import com.michael.restaurantmanagementsystem.db.DBStaff;
 import com.michael.restaurantmanagementsystem.entity.Menu;
 import com.michael.restaurantmanagementsystem.entity.ModalType;
 import com.michael.restaurantmanagementsystem.entity.Patron;
@@ -8,9 +10,12 @@ import com.michael.restaurantmanagementsystem.entity.Staff;
 import com.michael.restaurantmanagementsystem.service.MenuService;
 import com.michael.restaurantmanagementsystem.service.PatronService;
 import com.opencsv.bean.CsvToBeanBuilder;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXPaginatedTableView;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
+import io.github.palexdev.materialfx.filter.DoubleFilter;
 import io.github.palexdev.materialfx.filter.IntegerFilter;
 import io.github.palexdev.materialfx.filter.StringFilter;
 import io.github.palexdev.materialfx.utils.others.observables.When;
@@ -38,7 +43,8 @@ import java.util.ResourceBundle;
 public class StaffDashboardController implements Initializable {
     PatronService patronService = new PatronService();
     MenuService menuService = new MenuService();
-
+    DBPatron dbPatron = new DBPatron();
+    DBStaff dbStaff = new DBStaff();
     @FXML
     private AnchorPane root;
     @FXML
@@ -48,45 +54,29 @@ public class StaffDashboardController implements Initializable {
     private FlowPane menuItemsPane = null;
     @FXML
     private TilePane patronsPane = null;
-    @FXML
-    private Button btnOverview;
 
     @FXML
-    private Button btnOrders;
+    private Button btnOrders, btnOverview, btnMenus, btnCustomers, btnPackages, btnSignout, btnSettings, btnStaffManagement;
 
     @FXML
-    private Button btnCustomers;
+    private Pane pnlCustomer, pnlOrders, pnlMenus, pnlOverview, pnlStaffManagement;
 
-    @FXML
-    private Button btnMenus;
-
-    @FXML
-    private Button btnPackages;
-
-    @FXML
-    private Button btnSettings, btnStaffManagement;
-
-    @FXML
-    private Button btnSignout;
-
-    @FXML
-    private Pane pnlCustomer;
-
-    @FXML
-    private Pane pnlOrders;
-
-    @FXML
-    private Pane pnlOverview, pnlStaffManagement;
-
-    @FXML
-    private Pane pnlMenus;
     @FXML
     private MFXPaginatedTableView<Staff> paginated;
-    ObservableList<Staff> staff;
+
+    @FXML
+    private MFXTextField txtFirstName, txtLastName, txtEmail, txtSalary, imgUrl;
+
+    @FXML
+    MFXComboBox<Staff.Department> txtDept;
+    ObservableList<Staff.Department> departments = FXCollections.observableArrayList(
+            Staff.Department.ACCOUNTING, Staff.Department.ENGINEERING, Staff.Department.ADMINISTRATION
+    );
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        txtDept.setItems(departments);
         //set overview panel to front
         pnlOverview.toFront();
 
@@ -130,7 +120,8 @@ public class StaffDashboardController implements Initializable {
 
         if (source == btnCustomers) {
             //pnlCustomer.setStyle("-fx-background-color : #1620A1");
-            List<Patron> patronList = getAllPatrons();
+            //List<Patron> patronList = getAllPatrons();
+            List<Patron> patronList = dbPatron.getAllRecords();
             List<Node> nodes = patronList.stream().map(patronService::createView).toList();
             //List<Node> nodes = patronList.stream().map(Patron::createView).toList();
 
@@ -222,6 +213,7 @@ public class StaffDashboardController implements Initializable {
         MFXTableColumn<Staff> lastNameColumn = new MFXTableColumn<>("Last Name", false, Comparator.comparing(Staff::getLastName));
         MFXTableColumn<Staff> deptColumn = new MFXTableColumn<>("Department", false, Comparator.comparing(Staff::getDept));
         MFXTableColumn<Staff> emailColumn = new MFXTableColumn<>("Email", false, Comparator.comparing(Staff::getEmail));
+        MFXTableColumn<Staff> imgUrlColumn = new MFXTableColumn<>("Image Path", false, Comparator.comparing(Staff::getImageUrl));
         MFXTableColumn<Staff> salaryColumn = new MFXTableColumn<>("Salary", false, Comparator.comparing(Staff::getSalary));
 
         idColumn.setRowCellFactory(staff -> new MFXTableRowCell<>(Staff::getId));
@@ -231,22 +223,24 @@ public class StaffDashboardController implements Initializable {
         }});
         emailColumn.setRowCellFactory(staff -> new MFXTableRowCell<>(Staff::getEmail));
         deptColumn.setRowCellFactory(staff -> new MFXTableRowCell<>(Staff::getDept));
+        salaryColumn.setRowCellFactory(staff -> new MFXTableRowCell<>(Staff::getSalary));
+        imgUrlColumn.setRowCellFactory(staff -> new MFXTableRowCell<>(Staff::getImageUrl));
         firstNameColumn.setAlignment(Pos.CENTER_RIGHT);
 
-        paginated.getTableColumns().addAll(idColumn, firstNameColumn, lastNameColumn, emailColumn, deptColumn);
+        paginated.getTableColumns().addAll(idColumn, firstNameColumn, lastNameColumn, emailColumn, deptColumn, salaryColumn, imgUrlColumn);
         paginated.getFilters().addAll(
                 new IntegerFilter<>("ID", Staff::getId),
                 new StringFilter<>("First Name", Staff::getFirstName),
                 new StringFilter<>("Last Name", Staff::getLastName),
+                new DoubleFilter<>("Salary", Staff::getSalary),
+                new StringFilter<>("Image url", Staff::getImageUrl),
                 // new EnumFilter<Staff, Staff.Department>("Dept", Staff::getDept),
                 new StringFilter<>("Email", Staff::getEmail)
                 //new StringFilter<>("State", Staff::getState, Staff.Level.class),
         );
 
-        staff = FXCollections.observableArrayList(
-                new Staff(1, "uche", "okeke", "ucheokeke@gmail.com", "Female", "ImageUrl")
-        );
-        paginated.setItems(staff);
+        ObservableList<Staff> observableList = FXCollections.observableArrayList(dbStaff.getAllRecords());
+        paginated.setItems(observableList);
     }
 }
 

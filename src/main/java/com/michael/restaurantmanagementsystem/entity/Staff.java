@@ -12,12 +12,22 @@ public class Staff {
     @CsvBindByName
     public int id;
     @CsvBindByName
-    public String firstName, lastName, email, gender, imageUrl;
+    public String firstName, lastName, email, imageUrl;
     private double salary;
     public Department dept;
 
     public Staff() {
 
+    }
+
+    public Staff(int id, String firstName, String lastName, String email, String imageUrl, double salary, Department dept) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.imageUrl = imageUrl;
+        this.salary = salary;
+        this.dept = dept;
     }
 
     public double getSalary() {
@@ -36,14 +46,6 @@ public class Staff {
         this.dept = dept;
     }
 
-    public Staff(int id, String firstName, String lastName, String email, String gender, String imageUrl) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.gender = gender;
-        this.imageUrl = imageUrl;
-    }
 
     public int getId() {
         return id;
@@ -51,14 +53,6 @@ public class Staff {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public String getFirstName() {

@@ -16,7 +16,7 @@ public class Patron extends User {
     public Patron() {
     }
 
-    enum PatronLevel {
+    public enum PatronLevel {
         DIAMOND, GOLD, SILVER
     }
 
@@ -25,6 +25,11 @@ public class Patron extends User {
     }
 
     public void setLevel(PatronLevel level) {
+        this.level = level;
+    }
+
+    public Patron(int id, String firstName, String lastName, String gender, String email, String imageUrl, PatronLevel level) {
+        super(id, firstName, lastName, gender, email, imageUrl);
         this.level = level;
     }
 
