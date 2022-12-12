@@ -215,7 +215,7 @@
                         </ImageView>
                   <SplitPane dividerPositions="0.5" layoutX="6.0" layoutY="127.0" orientation="VERTICAL" prefHeight="673.0" prefWidth="822.0">
                      <items>
-                        <MFXPaginatedTableView fx:id="paginated" prefHeight="633.0" prefWidth="577.0" rowsPerPage="10" />
+                        <MFXPaginatedTableView fx:id="orderPaginatedTableview" prefHeight="633.0" prefWidth="577.0" rowsPerPage="10" />
                         <BorderPane maxWidth="1.7976931348623157E308" prefHeight="333.0" prefWidth="801.0">
                            <bottom>
                               <HBox alignment="CENTER" prefHeight="34.0" prefWidth="821.0" spacing="10.0" BorderPane.alignment="CENTER">
@@ -247,13 +247,6 @@
                                  </children>
                               </HBox>
                            </bottom>
-                           <top>
-                              <Label text="New Staff" textFill="#3e19a6" BorderPane.alignment="CENTER">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                           </top>
                            <center>
                               <GridPane prefHeight="226.0" prefWidth="821.0" vgap="10.0" BorderPane.alignment="CENTER">
                                  <columnConstraints>
@@ -269,7 +262,7 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Staff Id">
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Order Id">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -282,7 +275,7 @@
                                           <Font size="16.0" />
                                        </font>
                                     </MFXTextField>
-                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="First Name" GridPane.columnIndex="2">
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Patron" GridPane.columnIndex="2">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -290,7 +283,7 @@
                                           <Insets left="5.0" right="5.0" />
                                        </padding>
                                     </Label>
-                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Last Name" GridPane.rowIndex="1">
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Order Title" GridPane.rowIndex="1">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -303,7 +296,7 @@
                                           <Font size="16.0" />
                                        </font>
                                     </MFXTextField>
-                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Dept" GridPane.rowIndex="2">
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Quantity" GridPane.rowIndex="2">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -324,7 +317,7 @@
                                           <Font size="16.0" />
                                        </font>
                                     </MFXComboBox>
-                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Image Path" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Cost" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -332,7 +325,7 @@
                                           <Insets left="5.0" right="5.0" />
                                        </padding>
                                     </Label>
-                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Salary" GridPane.rowIndex="3">
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Order Status" GridPane.rowIndex="3">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -364,7 +357,7 @@
                   </SplitPane>
                     </children>
                 </Pane>
-                <Pane fx:id="pnlMenus" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" visible="false">
+                <Pane fx:id="pnlMenus" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
                     <children>
                         <TextField layoutX="581.0" layoutY="29.0" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #fff; -fx-border-color: #3e19a6; -fx-border-radius: 2em;" />
                         <Label layoutX="57.0" layoutY="25.0" text="Restaurant Menu" textFill="#3e19a6">
@@ -393,7 +386,7 @@
                         </ScrollPane>
                     </children>
                 </Pane>
-            <Pane fx:id="pnlProfile" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" visible="false">
+            <Pane fx:id="pnlProfile" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
                <children>
                   <Label layoutX="83.0" layoutY="47.0" text="About" textFill="#6a09ae">
                      <font>

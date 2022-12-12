@@ -2,8 +2,6 @@ package com.michael.restaurantmanagementsystem.entity;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
-
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -23,7 +21,7 @@ public class Order {
     @Column
     private OrderStatus status;
     @Column
-    private LocalDate dateOrdered;
+    private String dateOrdered;
 
     public Order() {
     }
@@ -36,7 +34,7 @@ public class Order {
         this.cost = cost;
     }
 
-    public Order(Long id, String patron, String menu, int quantity, double cost, OrderStatus status, LocalDate dateOrdered) {
+    public Order(Long id, String patron, String menu, int quantity, double cost, OrderStatus status, String dateOrdered) {
         this.id = id;
         this.patron = patron;
         this.menu = menu;
@@ -82,11 +80,11 @@ public class Order {
         this.status = status;
     }
 
-    public LocalDate getOrderDate() {
+    public String getOrderDate() {
         return dateOrdered;
     }
 
-    public void setOrderDate(LocalDate dateOrdered) {
+    public void setOrderDate(String dateOrdered) {
         this.dateOrdered = dateOrdered;
     }
 

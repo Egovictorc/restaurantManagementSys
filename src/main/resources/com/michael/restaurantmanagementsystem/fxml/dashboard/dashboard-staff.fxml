@@ -129,11 +129,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                 </Button>
-                <Button fx:id="btnPackages" alignment="BASELINE_LEFT" graphicTextGap="22.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../css/style.css" text="Packages">
+                <Button fx:id="btnStaffManagement" alignment="BASELINE_LEFT" graphicTextGap="22.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../css/style.css" text="Staff Management">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../images/icons8_Box_32px.png" />
+                                <Image url="@../../images/icons8_Slider__32px.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -147,11 +147,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                 </Button>
-                <Button fx:id="btnStaffManagement" alignment="BASELINE_LEFT" graphicTextGap="22.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../css/style.css" text="Staff Management">
+                <Button fx:id="btnPackages" alignment="BASELINE_LEFT" graphicTextGap="22.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@../../css/style.css" text="Packages">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../images/icons8_Slider__32px.png" />
+                                <Image url="@../../images/icons8_Box_32px.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -246,9 +246,9 @@
                   </Label>
                   <ScrollPane layoutX="37.0" layoutY="140.0" stylesheets="@../../css/style.css">
                      <content>
-                        <FlowPane hgap="40.0" prefHeight="625.0" prefWidth="1100.0" style="-fx-background-color: #fff;" vgap="25.0">
+                        <FlowPane hgap="100.0" prefHeight="625.0" prefWidth="1100.0" style="-fx-background-color: #fff;" vgap="80.0">
                            <children>
-                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="80.0" prefWidth="150.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
+                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="150.0" prefWidth="250.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -265,7 +265,7 @@
                                     <DropShadow />
                                  </effect>
                               </VBox>
-                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="80.0" prefWidth="150.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
+                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="150.0" prefWidth="250.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -282,7 +282,7 @@
                                     <DropShadow />
                                  </effect>
                               </VBox>
-                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="80.0" prefWidth="150.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
+                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="150.0" prefWidth="250.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -299,7 +299,7 @@
                                     <DropShadow />
                                  </effect>
                               </VBox>
-                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="80.0" prefWidth="150.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
+                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="150.0" prefWidth="250.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -316,7 +316,7 @@
                                     <DropShadow />
                                  </effect>
                               </VBox>
-                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="80.0" prefWidth="150.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
+                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="150.0" prefWidth="250.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -333,7 +333,7 @@
                                     <DropShadow />
                                  </effect>
                               </VBox>
-                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="80.0" prefWidth="150.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
+                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="150.0" prefWidth="250.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -350,7 +350,7 @@
                                     <DropShadow />
                                  </effect>
                               </VBox>
-                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="80.0" prefWidth="150.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
+                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="150.0" prefWidth="250.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -367,7 +367,7 @@
                                     <DropShadow />
                                  </effect>
                               </VBox>
-                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="80.0" prefWidth="150.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
+                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="150.0" prefWidth="250.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -384,7 +384,7 @@
                                     <DropShadow />
                                  </effect>
                               </VBox>
-                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="80.0" prefWidth="150.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
+                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="150.0" prefWidth="250.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -401,7 +401,7 @@
                                     <DropShadow />
                                  </effect>
                               </VBox>
-                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="80.0" prefWidth="150.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
+                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="150.0" prefWidth="250.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -418,7 +418,7 @@
                                     <DropShadow />
                                  </effect>
                               </VBox>
-                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="80.0" prefWidth="150.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
+                              <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="150.0" prefWidth="250.0" style="-fx-border-radius: 0px 50px 0px 0px; -fx-border-color: #C1C2C7;">
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -511,7 +511,7 @@
                                           <Font size="16.0" />
                                        </font>
                                     </MFXTextField>
-                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Delivery Address" GridPane.columnIndex="2">
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Patron" GridPane.columnIndex="2">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -532,7 +532,7 @@
                                           <Font size="16.0" />
                                        </font>
                                     </MFXTextField>
-                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Delivery Date" GridPane.rowIndex="2">
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Order Status" GridPane.rowIndex="2">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -553,7 +553,7 @@
                                           <Font size="16.0" />
                                        </font>
                                     </MFXComboBox>
-                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Image Path" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Cost" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -561,7 +561,7 @@
                                           <Insets left="5.0" right="5.0" />
                                        </padding>
                                     </Label>
-                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Salary" GridPane.rowIndex="3">
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Order date" GridPane.rowIndex="3">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -635,7 +635,7 @@
                                 </VBox>
                             </children>
                         </HBox>
-                        <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="741.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="736.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../images/icons8_Search_52px.png" />
                             </image>
