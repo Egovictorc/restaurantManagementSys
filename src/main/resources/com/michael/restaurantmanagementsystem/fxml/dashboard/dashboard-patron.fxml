@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXPaginatedTableView?>
 <?import io.github.palexdev.materialfx.controls.MFXTableColumn?>
 <?import io.github.palexdev.materialfx.controls.MFXTableView?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
@@ -13,6 +15,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -25,7 +28,7 @@
 
 <SplitPane dividerPositions="0.2" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.michael.restaurantmanagementsystem.controller.PatronDashboardController">
     <items>
-        <VBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" prefHeight="579.0" style="-fx-background-color: #e9ecfa;;">
+        <VBox alignment="TOP_CENTER" maxWidth="250.0" prefHeight="799.0" prefWidth="179.0" style="-fx-background-color: #e9ecfa;;">
             <children>
                 <VBox alignment="CENTER" spacing="10.0">
                     <children>
@@ -146,7 +149,7 @@
                 </Button>
             </children>
         </VBox>
-        <StackPane maxWidth="1.7976931348623157E308" prefHeight="576.0" prefWidth="795.0" style="-fx-background-color: #fff;">
+        <StackPane maxWidth="1.7976931348623157E308" prefHeight="766.0" prefWidth="837.0" style="-fx-background-color: #fff;">
             <children>
                 <Pane fx:id="pnlOrders" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" visible="false">
                <children>
@@ -161,7 +164,7 @@
                                 <Font size="24.0" />
                             </font>
                         </Label>
-                        <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="72.0" maxWidth="1.7976931348623157E308" prefHeight="92.0" prefWidth="661.0" snapToPixel="false" spacing="50.0">
+                        <HBox alignment="CENTER_LEFT" layoutX="57.0" layoutY="60.0" maxWidth="1.7976931348623157E308" prefHeight="65.0" prefWidth="661.0" snapToPixel="false" spacing="50.0">
                             <children>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                     <children>
@@ -205,67 +208,163 @@
                                 </VBox>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="178.0" prefHeight="42.0" prefWidth="712.0" spacing="80.0" style="-fx-background-color: #fff;">
-                            <children>
-                                <Label text="Company Name" textFill="#3493bf">
-                                    <HBox.margin>
-                                        <Insets left="50.0" />
-                                    </HBox.margin>
-                                    <font>
-                                        <Font name="System Bold" size="12.0" />
-                                    </font>
-                                </Label>
-                                <Label text="Airport" textFill="#3493bf">
-                                    <HBox.margin>
-                                        <Insets />
-                                    </HBox.margin>
-                                    <font>
-                                        <Font name="System Bold" size="12.0" />
-                                    </font>
-                                </Label>
-                                <Label text="Delivery Date" textFill="#3493bf">
-                                    <HBox.margin>
-                                        <Insets />
-                                    </HBox.margin>
-                                    <font>
-                                        <Font name="System Bold" size="12.0" />
-                                    </font>
-                                </Label>
-                                <Label text="Amount" textFill="#3493bf">
-                                    <HBox.margin>
-                                        <Insets />
-                                    </HBox.margin>
-                                    <font>
-                                        <Font name="System Bold" size="12.0" />
-                                    </font>
-                                </Label>
-                                <Label text="Status" textFill="#3493bf">
-                                    <HBox.margin>
-                                        <Insets />
-                                    </HBox.margin>
-                                    <font>
-                                        <Font name="System Bold" size="12.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </HBox>
-                        <ScrollPane layoutX="14.0" layoutY="232.0" prefHeight="320.0" prefWidth="746.0" stylesheets="@../../css/style.css">
-                            <content>
-                                <VBox fx:id="pnItems" maxWidth="1.7976931348623157E308" prefHeight="318.0" prefWidth="744.0" spacing="5.0" style="-fx-background-color: transparent;">
-                                    <padding>
-                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                    </padding>
-                                </VBox>
-                            </content>
-                        </ScrollPane>
                         <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="741.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../images/icons8_Search_52px.png" />
                             </image>
                         </ImageView>
+                  <SplitPane dividerPositions="0.5" layoutX="6.0" layoutY="127.0" orientation="VERTICAL" prefHeight="673.0" prefWidth="822.0">
+                     <items>
+                        <MFXPaginatedTableView fx:id="paginated" prefHeight="633.0" prefWidth="577.0" rowsPerPage="10" />
+                        <BorderPane maxWidth="1.7976931348623157E308" prefHeight="333.0" prefWidth="801.0">
+                           <bottom>
+                              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="821.0" spacing="10.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <MFXButton fx:id="btnAdd" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #3a5;" text="Add" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </MFXButton>
+                                    <MFXButton fx:id="btnUpdate" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #329;" text="Update" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </MFXButton>
+                                    <MFXButton fx:id="btnDelete" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #e35;" text="Delete" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </MFXButton>
+                                 </children>
+                              </HBox>
+                           </bottom>
+                           <top>
+                              <Label text="New Staff" textFill="#3e19a6" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </top>
+                           <center>
+                              <GridPane prefHeight="226.0" prefWidth="821.0" vgap="10.0" BorderPane.alignment="CENTER">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="341.0" minWidth="10.0" prefWidth="112.0000244140625" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="385.79991912841797" minWidth="10.0" prefWidth="212.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="337.0" minWidth="10.0" prefWidth="174.40000000000003" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="319.1999755859375" minWidth="10.0" prefWidth="319.1999755859375" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Staff Id">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="5.0" right="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <MFXTextField fx:id="txtId" floatMode="ABOVE" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </MFXTextField>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="First Name" GridPane.columnIndex="2">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="5.0" right="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Last Name" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="5.0" right="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <MFXTextField fx:id="txtFirstName" floatMode="ABOVE" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="3">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </MFXTextField>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Dept" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="5.0" right="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Email" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="5.0" right="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <MFXComboBox fx:id="txtDept" floatMode="ABOVE" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </MFXComboBox>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Image Path" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="5.0" right="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Salary" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="5.0" right="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <MFXTextField fx:id="txtSalary" floatMode="ABOVE" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </MFXTextField>
+                                    <MFXTextField fx:id="txtLastName" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <MFXTextField fx:id="txtEmail" floatMode="ABOVE" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </MFXTextField>
+                                    <MFXTextField fx:id="txtImageUrl" floatMode="ABOVE" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </MFXTextField>
+                                 </children>
+                              </GridPane>
+                           </center>
+                        </BorderPane>
+                     </items>
+                  </SplitPane>
                     </children>
                 </Pane>
-                <Pane fx:id="pnlMenus" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
+                <Pane fx:id="pnlMenus" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" visible="false">
                     <children>
                         <TextField layoutX="581.0" layoutY="29.0" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #fff; -fx-border-color: #3e19a6; -fx-border-radius: 2em;" />
                         <Label layoutX="57.0" layoutY="25.0" text="Restaurant Menu" textFill="#3e19a6">
@@ -294,7 +393,7 @@
                         </ScrollPane>
                     </children>
                 </Pane>
-            <Pane fx:id="pnlProfile" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
+            <Pane fx:id="pnlProfile" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" visible="false">
                <children>
                   <Label layoutX="83.0" layoutY="47.0" text="About" textFill="#6a09ae">
                      <font>

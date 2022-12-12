@@ -2,6 +2,7 @@ package com.michael.restaurantmanagementsystem.entity;
 
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvToBeanBuilder;
+import jakarta.persistence.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,9 +10,60 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 
-public class Patron extends User {
+@Entity
+
+@Table(name = "patrons")
+public class Patron {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
+    @Column
+    private String firstName, lastName, email, gender, imageUrl;
     @CsvBindByName
+    @Column
+    @Enumerated(EnumType.STRING)
     private PatronLevel level;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Patron() {
     }
@@ -28,8 +80,7 @@ public class Patron extends User {
         this.level = level;
     }
 
-    public Patron(int id, String firstName, String lastName, String gender, String email, String imageUrl, PatronLevel level) {
-        super(id, firstName, lastName, gender, email, imageUrl);
+    public Patron(Long id, String firstName, String lastName, String gender, String email, String imageUrl, PatronLevel level) {
         this.level = level;
     }
 
@@ -92,7 +143,7 @@ public class Patron extends User {
 
     public static void main(String[] args) {
 
-        InputStream inputStream = Patron.class.getResourceAsStream("/PATRON_DATA.csv");
+        InputStream inputStream = Patron.class.getResourceAsStream("/patron.csv");
         List<Patron> patronList;
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
             patronList = new CsvToBeanBuilder<Patron>(bufferedReader)

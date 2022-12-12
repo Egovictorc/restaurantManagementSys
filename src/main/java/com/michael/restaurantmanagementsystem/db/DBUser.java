@@ -1,9 +1,13 @@
 package com.michael.restaurantmanagementsystem.db;
 
+import com.michael.restaurantmanagementsystem.config.HibernateUtil;
+import org.hibernate.Session;
+
 import java.sql.*;
 import java.util.List;
 
 public abstract class DBUser<T> {
+    Session session = HibernateUtil.getSessionFactory().openSession();
     static Connection conn = null;
     static final String DATABASE = "rms",
             CONNECTION_URL = "jdbc:mysql://localhost/" + DATABASE + "?createDatabaseIfNotExist=true",
@@ -26,6 +30,9 @@ public abstract class DBUser<T> {
             while (rs.next()) {
                 System.out.println(rs.getInt("id") + " " + rs.getString("firstName"));
             }
+            rs.close();
+            psmt.close();
+            conn.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

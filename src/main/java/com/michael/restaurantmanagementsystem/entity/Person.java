@@ -76,7 +76,7 @@ public class Person {
     }
 
     public static void main(String[] args) {
-        InputStream inputStream = Person.class.getResourceAsStream("/PATRON_DATA.csv");
+        InputStream inputStream = Person.class.getResourceAsStream("/patron.csv");
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         List<Person> personList = new CsvToBeanBuilder<Person>(bufferedReader)
                 .withType(Person.class).build().parse();

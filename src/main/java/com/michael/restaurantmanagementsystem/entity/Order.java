@@ -1,52 +1,93 @@
 package com.michael.restaurantmanagementsystem.entity;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "orders")
 public class Order {
-    private int id;
-    private Patron patron;
-    private Product product;
-    private LocalDate orderDate;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    private Long id;
+    @Column
+    private String patron;
+    @Column(name = "title")
+    private String menu;
+    @Column
     private int quantity;
+    @Column
+    private double cost;
+    @Enumerated(EnumType.STRING)
+    @Column
+    private OrderStatus status;
+    @Column
+    private LocalDate dateOrdered;
 
-    public Order(int id, Patron patron, Product product, LocalDate orderDate, int quantity) {
-        this.id = id;
-        this.patron = patron;
-        this.product = product;
-        this.orderDate = orderDate;
-        this.quantity = quantity;
+    public Order() {
     }
 
-    public int getId() {
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    public Order(Long id, String patron, String menu, int quantity, double cost, OrderStatus status, LocalDate dateOrdered) {
+        this.id = id;
+        this.patron = patron;
+        this.menu = menu;
+        this.quantity = quantity;
+        this.cost = cost;
+        this.status = status;
+        this.dateOrdered = dateOrdered;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Patron getPatron() {
+    public enum OrderStatus {
+        DELIVERED, NOT_DELIVERED
+    }
+
+    public String getPatron() {
         return patron;
     }
 
-    public void setPatron(Patron patron) {
+    public void setPatron(String patron) {
         this.patron = patron;
     }
 
-    public Product getProduct() {
-        return product;
+    public String getMenu() {
+        return menu;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setMenu(String menu) {
+        this.menu = menu;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
     }
 
     public LocalDate getOrderDate() {
-        return orderDate;
+        return dateOrdered;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
-        this.orderDate = orderDate;
+    public void setOrderDate(LocalDate dateOrdered) {
+        this.dateOrdered = dateOrdered;
     }
 
     public int getQuantity() {

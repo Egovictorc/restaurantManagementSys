@@ -13,9 +13,14 @@ module com.michael.restaurantmanagementsystem {
     requires org.apache.logging.log4j.core;
 
     requires java.sql;
-    requires com.opencsv;
-    exports com.michael.restaurantmanagementsystem.entity to com.opencsv;
+    requires org.hibernate.orm.core;
+    requires java.naming;
 
+    requires com.opencsv;
+    requires jakarta.persistence;
+    exports com.michael.restaurantmanagementsystem.entity to com.opencsv, org.hibernate.orm.core;
+
+    opens com.michael.restaurantmanagementsystem.entity to org.hibernate.orm.core;
     opens com.michael.restaurantmanagementsystem to javafx.fxml;
     exports com.michael.restaurantmanagementsystem;
 

@@ -111,8 +111,27 @@
             <artifactId>mysql-connector-j</artifactId>
             <version>8.0.31</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.1.6.Final</version>
+        </dependency>
+
+        <!-- <dependency>
+             <groupId>org.hibernate</groupId>
+             <artifactId>hibernate-core-jakarta</artifactId>
+             <version>6.1.6.Final</version>
+         </dependency>-->
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
 
     </dependencies>
+
 
     <build>
         <plugins>
@@ -149,4 +168,6 @@
             </plugin>
         </plugins>
     </build>
+
+
 </project>

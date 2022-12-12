@@ -1,12 +1,10 @@
 package com.michael.restaurantmanagementsystem.controller;
 
 import com.michael.restaurantmanagementsystem.Main;
+import com.michael.restaurantmanagementsystem.db.DBOrder;
 import com.michael.restaurantmanagementsystem.db.DBPatron;
 import com.michael.restaurantmanagementsystem.db.DBStaff;
-import com.michael.restaurantmanagementsystem.entity.Menu;
-import com.michael.restaurantmanagementsystem.entity.ModalType;
-import com.michael.restaurantmanagementsystem.entity.Patron;
-import com.michael.restaurantmanagementsystem.entity.Staff;
+import com.michael.restaurantmanagementsystem.entity.*;
 import com.michael.restaurantmanagementsystem.service.MenuService;
 import com.michael.restaurantmanagementsystem.service.PatronService;
 import com.opencsv.bean.CsvToBeanBuilder;
@@ -17,13 +15,13 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
 import io.github.palexdev.materialfx.filter.DoubleFilter;
 import io.github.palexdev.materialfx.filter.IntegerFilter;
+import io.github.palexdev.materialfx.filter.LongFilter;
 import io.github.palexdev.materialfx.filter.StringFilter;
 import io.github.palexdev.materialfx.utils.others.observables.When;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
@@ -45,6 +43,9 @@ public class StaffDashboardController implements Initializable {
     MenuService menuService = new MenuService();
     DBPatron dbPatron = new DBPatron();
     DBStaff dbStaff = new DBStaff();
+    DBOrder dbOrder = new DBOrder();
+
+
     @FXML
     private AnchorPane root;
     @FXML
@@ -62,7 +63,9 @@ public class StaffDashboardController implements Initializable {
     private Pane pnlCustomer, pnlOrders, pnlMenus, pnlOverview, pnlStaffManagement;
 
     @FXML
-    private MFXPaginatedTableView<Staff> paginated;
+    private MFXPaginatedTableView<Staff> staffPaginated;
+    @FXML
+    private MFXPaginatedTableView<Order> orderPaginatedTableview;
 
     @FXML
     private MFXTextField txtFirstName, txtLastName, txtEmail, txtSalary, imgUrl;
@@ -80,15 +83,12 @@ public class StaffDashboardController implements Initializable {
         //set overview panel to front
         pnlOverview.toFront();
 
-        Node[] nodes = new Node[10];
+    /*    Node[] nodes = new Node[10];
         for (int i = 0; i < nodes.length; i++) {
             try {
-
                 final int j = i;
                 nodes[i] = FXMLLoader.load(getClass().getResource("/com/michael/restaurantmanagementsystem/fxml/item.fxml"));
-
                 //give the items some effect
-
                 nodes[i].setOnMouseEntered(event -> {
                     nodes[j].setStyle("-fx-background-color : #CECECE");
                 });
@@ -99,14 +99,19 @@ public class StaffDashboardController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
 
         setupPaginated();
-        paginated.autosizeColumnsOnInitialization();
-        When.onChanged(paginated.currentPageProperty())
-                .then((oldValue, newValue) -> paginated.autosizeColumns())
+        staffPaginated.autosizeColumnsOnInitialization();
+        When.onChanged(staffPaginated.currentPageProperty())
+                .then((oldValue, newValue) -> staffPaginated.autosizeColumns())
                 .listen();
 
+        setupOrderPaginatedTableview();
+        orderPaginatedTableview.autosizeColumnsOnInitialization();
+        When.onChanged(orderPaginatedTableview.currentPageProperty())
+                .then((oldValue, newValue) -> orderPaginatedTableview.autosizeColumns())
+                .listen();
     }
 
     public void handleClicks(ActionEvent actionEvent) throws IOException {
@@ -175,7 +180,7 @@ public class StaffDashboardController implements Initializable {
     }
 
     public List<Patron> getAllPatrons() {
-        InputStream inputStream = Patron.class.getResourceAsStream("/PATRON_DATA.csv");
+        InputStream inputStream = Patron.class.getResourceAsStream("/patron.csv");
         List<Patron> patronList;
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
             patronList = new CsvToBeanBuilder<Patron>(bufferedReader)
@@ -187,7 +192,7 @@ public class StaffDashboardController implements Initializable {
     }
 
     public List<Menu> getAllMenu() {
-        InputStream inputStream = Menu.class.getResourceAsStream("/MENU_DATA.csv");
+        InputStream inputStream = Menu.class.getResourceAsStream("/menu.csv");
         List<Menu> menuList;
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
             menuList = new CsvToBeanBuilder<Menu>(bufferedReader)
@@ -227,9 +232,9 @@ public class StaffDashboardController implements Initializable {
         imgUrlColumn.setRowCellFactory(staff -> new MFXTableRowCell<>(Staff::getImageUrl));
         firstNameColumn.setAlignment(Pos.CENTER_RIGHT);
 
-        paginated.getTableColumns().addAll(idColumn, firstNameColumn, lastNameColumn, emailColumn, deptColumn, salaryColumn, imgUrlColumn);
-        paginated.getFilters().addAll(
-                new IntegerFilter<>("ID", Staff::getId),
+        staffPaginated.getTableColumns().addAll(idColumn, firstNameColumn, lastNameColumn, emailColumn, deptColumn, salaryColumn, imgUrlColumn);
+        staffPaginated.getFilters().addAll(
+                new LongFilter<>("ID", Staff::getId),
                 new StringFilter<>("First Name", Staff::getFirstName),
                 new StringFilter<>("Last Name", Staff::getLastName),
                 new DoubleFilter<>("Salary", Staff::getSalary),
@@ -240,7 +245,44 @@ public class StaffDashboardController implements Initializable {
         );
 
         ObservableList<Staff> observableList = FXCollections.observableArrayList(dbStaff.getAllRecords());
-        paginated.setItems(observableList);
+        staffPaginated.setItems(observableList);
+    }
+
+    private void setupOrderPaginatedTableview() {
+        MFXTableColumn<Order> idColumn = new MFXTableColumn<>("ID", false, Comparator.comparing(Order::getId));
+        MFXTableColumn<Order> titleColumn = new MFXTableColumn<>("Menu Title", false, Comparator.comparing(Order::getMenu));
+        MFXTableColumn<Order> patronColumn = new MFXTableColumn<>("Patron", false, Comparator.comparing(Order::getPatron));
+        MFXTableColumn<Order> quantityColumn = new MFXTableColumn<>("Quantity", false, Comparator.comparing(Order::getQuantity));
+        MFXTableColumn<Order> costColumn = new MFXTableColumn<>("Cost", false, Comparator.comparing(Order::getCost));
+        MFXTableColumn<Order> dateOrderedColumn = new MFXTableColumn<>("Date ordered", false, Comparator.comparing(Order::getOrderDate));
+        MFXTableColumn<Order> statusColumn = new MFXTableColumn<>("Status", false, Comparator.comparing(Order::getStatus));
+
+        idColumn.setRowCellFactory(order -> new MFXTableRowCell<>(Order::getId));
+        titleColumn.setRowCellFactory(order -> new MFXTableRowCell<>(Order::getMenu));
+        patronColumn.setRowCellFactory(order -> new MFXTableRowCell<>(Order::getPatron) {{
+            setAlignment(Pos.CENTER_RIGHT);
+        }});
+        quantityColumn.setRowCellFactory(order -> new MFXTableRowCell<>(Order::getQuantity));
+        costColumn.setRowCellFactory(order -> new MFXTableRowCell<>(Order::getCost));
+        dateOrderedColumn.setRowCellFactory(order -> new MFXTableRowCell<>(Order::getOrderDate));
+        statusColumn.setRowCellFactory(order -> new MFXTableRowCell<>(Order::getStatus));
+        titleColumn.setAlignment(Pos.CENTER_RIGHT);
+
+        orderPaginatedTableview.getTableColumns().addAll(idColumn, titleColumn, patronColumn, quantityColumn, costColumn, dateOrderedColumn, statusColumn);
+        orderPaginatedTableview.getFilters().addAll(
+                new LongFilter<>("ID", Order::getId),
+                new StringFilter<>("Title", Order::getMenu),
+                new StringFilter<>("Patron", Order::getPatron),
+                new DoubleFilter<>("Cost", Order::getCost),
+                new IntegerFilter<>("Quantity", Order::getQuantity)
+                // new EnumFilter<Order, Order.Department>("Dept", Order::getDept),
+                //new StringFilter<>("Status", Order::getStatus);
+                //new EnumFilter<>("Status", Order::getStatus)
+                //new StringFilter<>("State", Staff::getState, Staff.Level.class),
+        );
+
+        ObservableList<Order> observableList = FXCollections.observableArrayList(dbOrder.getAllRecords());
+        orderPaginatedTableview.setItems(observableList);
     }
 }
 
