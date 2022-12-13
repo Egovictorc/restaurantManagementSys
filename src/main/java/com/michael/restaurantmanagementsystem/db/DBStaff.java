@@ -1,15 +1,22 @@
 package com.michael.restaurantmanagementsystem.db;
 
+import com.michael.restaurantmanagementsystem.config.HibernateUtil;
 import com.michael.restaurantmanagementsystem.entity.Staff;
 
 import java.util.List;
 
 public class DBStaff extends DBUser<Staff> {
-   
+
     @Override
     public List<Staff> getAllRecords() {
+        HibernateUtil.loadData();
         List<Staff> staffList = session.createQuery("from Staff", Staff.class).list();
         return staffList;
+    }
+
+    public static void main(String[] args) {
+        DBStaff staff = new DBStaff();
+        System.out.println(staff.getAllRecords());
     }
     /*  @Override
   public List<Staff> getAllRecords() {

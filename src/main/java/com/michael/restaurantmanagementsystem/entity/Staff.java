@@ -15,16 +15,18 @@ public class Staff {
 
     @CsvBindByName
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     public Long id;
 
     @CsvBindByName
     @Column
     public String firstName, lastName, email, imageUrl;
     @Column
+    @CsvBindByName
     private double salary;
     @Column
+    @CsvBindByName
     @Enumerated(EnumType.STRING)
     public Department dept;
 

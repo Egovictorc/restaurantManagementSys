@@ -8,6 +8,7 @@ import java.util.List;
 
 public abstract class DBUser<T> {
     Session session = HibernateUtil.getSessionFactory().openSession();
+    //Session session = HibernateUtil.session;
     static Connection conn = null;
     static final String DATABASE = "rms",
             CONNECTION_URL = "jdbc:mysql://localhost/" + DATABASE + "?createDatabaseIfNotExist=true",

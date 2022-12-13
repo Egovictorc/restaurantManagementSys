@@ -1,26 +1,34 @@
 package com.michael.restaurantmanagementsystem.entity;
 
+import com.opencsv.bean.CsvBindByName;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
+    @CsvBindByName
     private Long id;
     @Column
+    @CsvBindByName
     private String patron;
     @Column(name = "title")
+    @CsvBindByName
     private String menu;
     @Column
+    @CsvBindByName
     private int quantity;
     @Column
+    @CsvBindByName
     private double cost;
     @Enumerated(EnumType.STRING)
     @Column
+    @CsvBindByName
     private OrderStatus status;
     @Column
+    @CsvBindByName
     private String dateOrdered;
 
     public Order() {
@@ -90,6 +98,14 @@ public class Order {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public String getDateOrdered() {
+        return dateOrdered;
+    }
+
+    public void setDateOrdered(String dateOrdered) {
+        this.dateOrdered = dateOrdered;
     }
 
     public void setQuantity(int quantity) {

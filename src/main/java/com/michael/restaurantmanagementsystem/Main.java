@@ -52,6 +52,10 @@ public class Main extends Application {
         scene = new Scene(loadFXML(fxml), bounds.getWidth(), bounds.getHeight());
         primaryStage.setScene(scene);
         primaryStage.centerOnScreen();
+
+        //load dummy data into database
+        //HibernateUtil.loadData();
+        //HibernateUtil.getSessionFactory().openSession();
     }
 
     private static Parent loadFXML(String fxml) throws IOException {

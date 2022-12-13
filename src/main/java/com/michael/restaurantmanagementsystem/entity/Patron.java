@@ -11,14 +11,15 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 @Entity
-
 @Table(name = "patrons")
 public class Patron {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
+    @CsvBindByName
     private Long id;
     @Column
+    @CsvBindByName
     private String firstName, lastName, email, gender, imageUrl;
     @CsvBindByName
     @Column
