@@ -5,7 +5,7 @@ import com.opencsv.bean.CsvBindByName;
 public abstract class User {
 
     @CsvBindByName
-    public int id;
+    public Long id;
     @CsvBindByName
     public String firstName, lastName, gender, email, imageUrl;
 
@@ -14,7 +14,7 @@ public abstract class User {
 
     }
 
-    public User(int id, String firstName, String lastName, String gender, String email, String imageUrl) {
+    public User(Long id, String firstName, String lastName, String gender, String email, String imageUrl) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -23,7 +23,7 @@ public abstract class User {
         this.imageUrl = imageUrl;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -35,13 +35,9 @@ public abstract class User {
         this.gender = gender;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public abstract void setId(Long id);
 
-    public String getFirstName() {
-        return firstName;
-    }
+    public abstract String getFirstName();
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;

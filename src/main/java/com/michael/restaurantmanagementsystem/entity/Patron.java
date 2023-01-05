@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "patrons")
-public class Patron {
+public class Patron extends User {
     @Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
     @Column
